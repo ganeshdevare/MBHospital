@@ -19,30 +19,37 @@ namespace MBHospital.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var result = patientRepository.GetRecords();
-            return Ok(result);
+            var response = patientRepository.GetRecords();
+            return Ok(response);
         }
 
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            var response = patientRepository.GetRecord(id);
+            return Ok(response);
         }
 
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post(Patient entity)
         {
+            var response = patientRepository.CreateRecord(entity);
+            return Ok(response);
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, Patient entity)
         {
+            var response = patientRepository.UpdateRecord(id, entity);
+            return Ok(response);
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var response = patientRepository.DeleteRecord(id);
+            return Ok(response);
         }
     }
 }

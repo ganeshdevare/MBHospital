@@ -25,7 +25,7 @@ namespace Application.Data.DataAccess
                 Cmd = new SqlCommand();
                 Cmd.Connection = Conn;
                 Cmd.CommandType = CommandType.Text;
-                Cmd.CommandText = $"INSERT INTO patient VALUES ({entity.PatientID} ,'{entity.FirstName}' ,'{entity.MiddleName}' ,'{entity.LastName}' ,{entity.Mobile} ,'{entity.Email}' ,{entity.DOB} ,'{entity.Gender}')";
+                Cmd.CommandText = $"INSERT INTO patient VALUES ({entity.PatientID} ,'{entity.FirstName}' ,'{entity.MiddleName}' ,'{entity.LastName}' ,'{entity.Mobile}' ,'{entity.Email}' ,'{entity.DOB}' ,'{entity.Gender}')";
 
                 int result = Cmd.ExecuteNonQuery();
 
@@ -103,7 +103,7 @@ namespace Application.Data.DataAccess
                               LastName = reader["last_name"].ToString(),
                               Mobile = reader["mobile"].ToString(),
                               Email = reader["email"].ToString(),
-                              DOB = DateOnly.Parse(reader["dob"].ToString()),
+                              DOB = reader["dob"].ToString(),
                               Gender = reader["gender"].ToString()
                           }
                         );
@@ -152,7 +152,7 @@ namespace Application.Data.DataAccess
                     LastName = reader["last_name"].ToString(),
                     Mobile = reader["mobile"].ToString(),
                     Email = reader["email"].ToString(),
-                    DOB = DateOnly.Parse(reader["dob"].ToString()),
+                    DOB = reader["dob"].ToString(),
                     Gender = reader["gender"].ToString()
                 };
 
@@ -183,7 +183,7 @@ namespace Application.Data.DataAccess
                 Cmd = new SqlCommand();
                 Cmd.Connection = Conn;
                 Cmd.CommandType = CommandType.Text;
-                Cmd.CommandText = $"UPDATE patient SET patient_id = {entity.PatientID} ,first_name = '{entity.FirstName}' ,middle_name = '{entity.MiddleName}' ,last_name = '{entity.LastName}' ,mobile = '{entity.Mobile}' ,email = '{entity.Email}' ,dob = {entity.DOB} ,gender = {entity.Gender} WHERE patient_id={id}";
+                Cmd.CommandText = $"UPDATE patient SET patient_id = {entity.PatientID} ,first_name = '{entity.FirstName}' ,middle_name = '{entity.MiddleName}' ,last_name = '{entity.LastName}' ,mobile = '{entity.Mobile}' ,email = '{entity.Email}' ,dob = '{entity.DOB}' ,gender = '{entity.Gender}' WHERE patient_id={id}";
 
                 int result = Cmd.ExecuteNonQuery();
 
